@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Fallback theme values. The real values are injected from data/theme.ts
+  in app/layout.tsx and override these — edit data/theme.ts, not here.
+*/
+
+:root {
+  --color-primary: #1e4238;
+  --color-secondary: #5e7d6b;
+  --color-accent: #c9962e;
+  --color-background: #e6d9b8;
+  --color-paper: #d9c193;       /* warm bamboo/aged-parchment tan */
+  --color-text: #4a3620;        /* dark sepia ink */
+  --color-text-muted: #8a6f45;
+}
+html,
+body {
+  height: 100%;
+}
+
+/* Warm bamboo-parchment paper, no grid pattern — just tonal variation
+   like aged paper: soft mottling and slightly darker worn edges */
+.paper-texture {
+  background-color: var(--color-paper);
+  background-image:
+    radial-gradient(circle at 20% 25%, rgba(180, 140, 80, 0.18), transparent 55%),
+    radial-gradient(circle at 80% 75%, rgba(140, 100, 55, 0.15), transparent 55%),
+    radial-gradient(circle at 50% 50%, rgba(160, 120, 65, 0.08), transparent 70%),
+    linear-gradient(180deg, rgba(90, 65, 30, 0.06) 0%, transparent 12%, transparent 88%, rgba(90, 65, 30, 0.08) 100%);
+  background-size: cover;
+}
+
+/* Inner gutter shadow so spreads read as a real book */
+.page-gutter-left {
+  box-shadow: inset -18px 0 22px -16px rgba(0, 0, 0, 0.28);
+}
+.page-gutter-right {
+  box-shadow: inset 18px 0 22px -16px rgba(0, 0, 0, 0.28);
+}
+
+/* Keyboard focus that survives any theme */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* react-pageflip renders its own shadow layers; keep them subtle */
+.stf__parent {
+  margin: 0 auto;
+}
+
+.stf__item,
+.stf__page {
+  user-select: text !important;
+  -webkit-user-select: text !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* app/globals.css */
+@keyframes wave-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.35);
+  }
+  50% {
+    box-shadow: 0 0 0 14px rgba(255, 255, 255, 0);
+  }
+}
+
+.animate-wave {
+  animation: wave-pulse 2s ease-out infinite;
+}

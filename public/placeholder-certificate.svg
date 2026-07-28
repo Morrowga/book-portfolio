@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="420" viewBox="0 0 600 420">
+  <rect width="600" height="420" fill="#F4EFE2"/>
+  <rect x="18" y="18" width="564" height="384" fill="none" stroke="#C9B98A" stroke-width="4"/>
+  <rect x="150" y="90" width="300" height="18" fill="#D6CCB2"/>
+  <rect x="190" y="130" width="220" height="12" fill="#E0D8C2"/>
+  <circle cx="300" cy="250" r="46" fill="#C9B98A"/>
+  <text x="300" y="370" font-family="sans-serif" font-size="20" fill="#8A836F" text-anchor="middle">Replace with certificate scan</text>
+</svg>
