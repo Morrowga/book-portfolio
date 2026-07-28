@@ -83,9 +83,9 @@ export default function ContactPage() {
  */}
 
 
-      <p className="mt-auto font-body text-xs italic text-muted">
+      {/* <p className="mt-auto font-body text-xs italic text-muted">
         Thank you for reading a story.
-      </p>
+      </p> */}
     </div>
   );
 }
