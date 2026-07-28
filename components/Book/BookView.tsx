@@ -85,6 +85,8 @@ export default function BookView() {
     right: number;
     height: number;
   } | null>(null);
+  const ready = mounted && bookRect !== null;
+
 
   const reducedMotion = useReducedMotion();
   const isOpen = currentPage > 0;
@@ -94,10 +96,10 @@ export default function BookView() {
   // Trigger the fade-in on the next frame after mount so the
   // opacity transition actually animates instead of snapping in.
   useEffect(() => {
-    if (!mounted) return;
+    if (!ready) return;
     const raf = requestAnimationFrame(() => setVisible(true));
     return () => cancelAnimationFrame(raf);
-  }, [mounted]);
+  }, [ready]);
 
   // Measure the book's real rendered box (react-pageflip's own
   // ".stf__parent" element) relative to the row container, WITHOUT
@@ -255,7 +257,7 @@ export default function BookView() {
           FlipBook's direct parent) purely to measure, not to wrap. */}
       <div
         ref={bookRowRef}
-        className={`absolute inset-0 z-10 flex items-center justify-center px-4 pb-4 transition-opacity md:px-2 md:pb-0 md:justify-end md:pr-16 lg:pr-24 ${
+        className={`absolute inset-0 z-10 flex items-start justify-center px-4 pb-4 pt-32 transition-opacity md:items-center md:justify-end md:px-2 md:pb-0 md:pt-0 md:pr-16 lg:pr-24 ${
           reducedMotion ? "duration-0" : "duration-700"
         } ${visible ? "opacity-100" : "opacity-0"}`}
       >
