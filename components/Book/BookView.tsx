@@ -245,9 +245,9 @@ export default function BookView() {
       </div>
 
       {/* Compact header — mobile only (no split screen on small screens) */}
-      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col items-center gap-1 p-6 text-center md:hidden">
-        <h1 className="font-display text-2xl text-white">{profile.name}</h1>
-        <p className="text-sm text-white/80">{profile.tagline}</p>
+      <div className="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col items-center gap-1 px-6 pt-8 pb-2 text-center md:hidden">
+        <h1 className="font-display text-3xl text-white">{profile.name}</h1>
+        <p className="text-base text-white/80">{profile.tagline}</p>
       </div>
 
       {/* The book — fixed size always, free to sit over the portrait's edge.
@@ -255,7 +255,7 @@ export default function BookView() {
           FlipBook's direct parent) purely to measure, not to wrap. */}
       <div
         ref={bookRowRef}
-        className={`absolute inset-0 z-10 flex items-center justify-center px-2 transition-opacity md:justify-end md:pr-16 lg:pr-24 ${
+        className={`absolute inset-0 z-10 flex items-center justify-center px-4 pb-4 transition-opacity md:px-2 md:pb-0 md:justify-end md:pr-16 lg:pr-24 ${
           reducedMotion ? "duration-0" : "duration-700"
         } ${visible ? "opacity-100" : "opacity-0"}`}
       >
@@ -312,9 +312,9 @@ export default function BookView() {
               left: bookRect.left,
               transform: "translate(-50%, -50%)",
             }}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-black text-white transition hover:bg-black/80"
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-black text-white transition hover:bg-black/80 md:h-12 md:w-12"
           >
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none">
+            <svg viewBox="0 0 24 24" className="h-4 w-4 md:h-5 md:w-5" fill="none">
               <path
                 d="M15 18l-6-6 6-6"
                 stroke="currentColor"
@@ -326,9 +326,8 @@ export default function BookView() {
           </button>
         )}
 
-        {/* Next arrow — half over the book's right edge, half outside it.
-            Solid black background, no blur. */}
-        {isOpen && bookRect && (
+        {/* Next arrow — hidden once the user reaches the back cover */}
+        {isOpen && currentPage < pages.length - 1 && bookRect && (
           <button
             type="button"
             aria-label="Next page"
@@ -339,9 +338,9 @@ export default function BookView() {
               right: bookRect.right,
               transform: "translate(50%, -50%)",
             }}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-black text-white transition hover:bg-black/80"
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-black text-white transition hover:bg-black/80 md:h-12 md:w-12"
           >
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none">
+            <svg viewBox="0 0 24 24" className="h-4 w-4 md:h-5 md:w-5" fill="none">
               <path
                 d="M9 18l6-6-6-6"
                 stroke="currentColor"
@@ -366,9 +365,14 @@ export default function BookView() {
               right: bookRect.right,
               transform: "translate(50%, -50%)",
             }}
-            className="animate-wave h-14 w-14 rounded-full bg-white/20 backdrop-blur-md transition hover:bg-white/30"
+            className="animate-wave h-10 w-10 rounded-full bg-white/20 backdrop-blur-md transition hover:bg-white/30 md:h-14 md:w-14"
           />
         )}
+      </div>
+      <div className="pointer-events-none absolute inset-x-0 bottom-3 z-10 text-center md:hidden">
+        <p className="text-[10px] tracking-wide text-white/50">
+          © {new Date().getFullYear()} Hannah Sya. All rights reserved.
+        </p>
       </div>
     </main>
   );

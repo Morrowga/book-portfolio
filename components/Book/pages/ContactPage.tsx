@@ -1,6 +1,7 @@
 import { Mail, Phone, Linkedin, Instagram, Facebook, Twitter, Globe } from "lucide-react";
 import { contact, SocialLink } from "@/data/socials";
 import { profile } from "@/data/profile";
+import Image from "next/image";
 
 const ICONS: Record<SocialLink["icon"], typeof Mail> = {
   linkedin: Linkedin,
@@ -69,6 +70,18 @@ export default function ContactPage() {
           })}
         </div>
       </div>
+
+      {/* <div className="mt-auto flex justify-end">
+        <Image
+          src="/images/coffee-contact2.png"
+          alt="Let's meet up for coffee"
+          width={420}
+          height={420}
+          className="h-auto w-full max-w-[260px]"
+        />
+      </div>
+ */}
+
 
       <p className="mt-auto font-body text-xs italic text-muted">
         Thank you for reading a story.
